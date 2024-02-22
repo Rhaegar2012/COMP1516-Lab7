@@ -35,7 +35,7 @@ def add_league():
     """
     global sports_leagues
     key_input = input("Enter a new sports league acronym: ").upper()
-    if key_input not in sports_leagues.keys():
+    if key_input in sports_leagues.keys():
         print(f"{key_input} is already listed as {sports_leagues[key_input]}")
     else:
         value_input = input("Enter the name of the new sports league: ")
@@ -69,13 +69,26 @@ def get_league_abbreviations_and_descriptions():
     """
     global sports_leagues
     league_set = set()
-    for keys, values in sports_leagues:
+    for keys, values in sports_leagues.items():
         league_set.add(f"{keys} is the {values}")
     return league_set
 
 
 def main():
-    pass
+    # Test 1: Delete a non existent league : Input ABC
+    delete_league()
+    # Test 2: Delete the NHL
+    delete_league()
+    # Test 3 Add an existing league : Input MLS
+    add_league()
+    # Test 4 Add a new league : Input FIFA , Federacion Internacional De Futbol Asociado
+    add_league()
+    league_abbreviations = get_abbreviations()
+    print(league_abbreviations)
+    league_descriptions = get_league_descriptions()
+    print(league_descriptions)
+    league_abbreviations_descriptions = get_league_abbreviations_and_descriptions()
+    print(league_abbreviations_descriptions)
 
 
 if __name__ == "__main__":
